@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
 import { ApiCustomResponse } from "../models/api-response.model";
 import { User } from "../models/user.model";
 
@@ -8,7 +9,7 @@ import { User } from "../models/user.model";
   providedIn: "root",
 })
 export class UserService {
-  private baseUrl = "http://localhost:8080/api/v1/users";
+  private readonly baseUrl = `${environment.apiUsersBaseUrl}/api/v1/users`;
 
   constructor(private http: HttpClient) {}
 

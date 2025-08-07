@@ -34,7 +34,7 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(id: string) {
-    if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+    if (confirm("Are you sure you want to delete this user?")) {
       this.userService.deleteUser(id).subscribe({
         next: () => this.getUsers(),
         error: (err) => {

@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 import { ApiCustomResponse } from "src/app/models/api-response.model";
 
@@ -10,9 +11,13 @@ import { ApiCustomResponse } from "src/app/models/api-response.model";
 })
 export class RegistryComponent {
   userForm: FormGroup;
-  serverErrorMessage: string | null = null;
+  errorMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
     this.userForm = this.fb.group({
       firstName: ["", [Validators.required, Validators.maxLength(50)]],
       lastName: ["", [Validators.required, Validators.maxLength(50)]],
@@ -23,8 +28,12 @@ export class RegistryComponent {
     });
   }
 
+  goToUsers() {
+    this.router.navigate(["users"]);
+  }
+
   onSubmit(): void {
-    this.serverErrorMessage = null;
+    this.errorMessage = null;
 
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
@@ -33,11 +42,16 @@ export class RegistryComponent {
 
     this.userService.createUser(this.userForm.value).subscribe({
       next: (res: ApiCustomResponse<any>) => {
-        alert("User created successfully");
-        this.userForm.reset();
+        if (res.success) {
+          alert("User created successfully");
+          this.userForm.reset();
+          this.goToUsers();
+        } else {
+          this.errorMessage = res.message;
+        }
       },
       error: (err) => {
-        console.log("Error inesperado");
+        this.errorMessage = err.error.message;
       },
     });
   }
