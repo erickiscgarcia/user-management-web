@@ -6,11 +6,10 @@ RUN npm install -g @angular/cli@8 && npm install
 COPY . .
 
 RUN if [ "$BUILD_MODE" = "prod" ]; then \
-    npm run build --prod; \
+    ng build --prod; \
     else \
-    npm run build; \
+    ng build; \
     fi
-
 
 FROM nginx:1.25
 RUN rm -rf /usr/share/nginx/html/*
