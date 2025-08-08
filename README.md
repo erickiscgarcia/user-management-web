@@ -1,27 +1,116 @@
-# UserManagementWeb
+![Angular](https://img.shields.io/badge/Angular-8-red)
+![Bootstrap](https://img.shields.io/badge/Styled_with-Bootstrap-blueviolet)
+![Dockerized](https://img.shields.io/badge/Docker-Ready-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
+# User Management Frontend
 
-## Development server
+Angular 8 frontend for a user management system, styled with Bootstrap and deployable via Docker and Nginx.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 📄 Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This Angular 8 application provides a responsive and user-friendly interface to manage users via RESTful API integration.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## ⚙️ Requirements
 
-## Running unit tests
+- Node.js v14
+- Angular CLI v8
+- Docker (optional)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## ⚙️ Environment Configuration
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Environment variables are located in:
 
-## Further help
+- `src/environments/environment.ts` → for local development
+- `src/environments/environment.prod.ts` → for production
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Backend URL is configured using `apiUsersBaseUrl`.
+
+---
+
+## 📁 Project Structure
+
+```plaintext
+user-management-web/
+├── Dockerfile
+├── angular.json
+├── package.json
+├── src/
+│   ├── environments/
+│   ├── app/
+│   └── index.html
+└── ...
+```
+
+---
+
+## ▶️ Running Locally
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+ng serve
+```
+
+Access the app at: [http://localhost:4200](http://localhost:4200)
+
+---
+
+## 📦 Production Build
+
+To build the frontend for production:
+
+```bash
+ng build --prod
+```
+
+---
+
+## 🐳 Running with Docker
+
+Build the Docker image:
+
+```bash
+docker build -t user-management-frontend .
+```
+
+Run the container:
+
+```bash
+docker run -p 4200:80 user-management-frontend
+```
+
+The app is served using Nginx.
+
+---
+
+## 📝 Notes
+
+- Ensure the backend URL is properly configured in `environment.prod.ts` for production builds.
+- Dockerfile is set to build a production-ready app using Angular CLI and serve it through Nginx.
+
+---
+
+## 🌐 Live Demo on Render
+
+> ⚠️ **Note**: Render may suspend free-tier services due to inactivity. The first request can take a few seconds while the service "wakes up", but subsequent responses should be fast.
+
+- 🧑‍💻 Frontend: [https://user-management-web-0nc6.onrender.com/](https://user-management-web-0nc6.onrender.com/)
+
+---
+
+## 🧾 License
+
+MIT – use, modify, and share freely.
