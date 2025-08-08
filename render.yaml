@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: user-management-web
+    env: docker
+    plan: Hobby
+    dockerfilePath: Dockerfile
+    build:
+      args:
+        BUILD_MODE: prod
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: NODE_ENV
+        value: production
+    branch: feature/users-management
+    autoDeploy: true
+    rootDirectory: "."
