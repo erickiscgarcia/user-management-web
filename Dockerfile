@@ -1,5 +1,5 @@
 FROM node:14 AS build
-ARG BUILD_MODE=dev
+ARG BUILD_MODE=prod
 WORKDIR /app
 COPY package*.json ./
 RUN npm install -g @angular/cli@8 && npm install
